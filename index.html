@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Animation AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Css me -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Seminar</title>
+  </head>
+  <body id="home">
+    <!-- Ini Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Seminar HTML & CSS</a>
+    </div>
+</nav>
+<!-- ini ahir navbar -->
+
+<!-- akhir about -->
+<!-- Contact me -->
+<section id="contact">
+  <div class="container">
+    <div class="row text-center mb-3">
+      <div class="col">
+        <h2 class="lead"></h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <!-- Alert -->
+        <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+          <strong>Trimaksih!</strong> Pendaftaran berhasil, Wajib Masuk grup wa
+          <a href="https://chat.whatsapp.com/J85pXXQugaT4GNrTcp9oI0">Join grup</a>
+<!--           <button type="button">Join Grup Wa</button> -->
+        </div>
+        <!-- Akhir alert -->
+        <form name="pendaftaran-seminar">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nama lengkap</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">No WhatsApp</label>
+            <input type="text" class="form-control" id="WhatsApp" aria-describedby="name" name="wa">
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Status(Mahsiswa, Siswa Sekolah, Umum)</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" name="status">
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Asal Institusi (Nama sekolah, nama perguruan tinggi atau kantor)</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" name="institusi">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Alamat email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+          </div>
+        <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+        <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- akhir contact me -->
+
+<!-- footer -->
+
+
+<footer class="bg-primary text-white text-center pb-5">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,288L48,277.3C96,267,192,245,288,208C384,171,480,117,576,96C672,75,768,85,864,122.7C960,160,1056,224,1152,261.3C1248,299,1344,309,1392,314.7L1440,320L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+  <p>Created with <i class="bi bi-bookmark-heart text-white"></i> by <a href="https://www.instagram.com/jejen_adr/" class="text-white fw-bold" target="blank">Jejen</a></p>
+</footer>
+<!-- akhir footer -->
+
+<!-- script googlesheet -->
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx1SLOHRgvScPSHbCBBI57uTNPs-i9GDqHIUX-uoknNPZxC0W9xWRTM-RG4WapGZmR4hg/exec'
+  const form = document.forms['pendaftaran-seminar'];
+  const btnKirim = document.querySelector('.btn-kirim');
+  const btnLoading = document.querySelector('.btn-loading');
+  const myAlert = document.querySelector('.my-alert');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    // ketika tombol submit di kirim
+    // Tampilkan button loading simpan button kirim
+    btnLoading.classList.toggle('d-none');
+    btnKirim.classList.toggle('d-none');
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => { 
+        // Tampilkan button kirim simpan button loading
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
+        // Tampilkan Alert
+        myAlert.classList.toggle('d-none');
+        // reset Form
+        form.reset();
+        console.log('Success!', response);
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+<!-- akhir -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- script GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <!-- script GSAP Text -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/TextPlugin.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(TextPlugin);
+      gsap.to('.lead', {duration: 3.5, delay: 1.5, text: 'Daftar Segera'});
+      gsap.from('.jumbotron img', {
+        duration: 1, rotateY: 360, opacity: 0
+      });
+      gsap.from('.navbar', {
+        duration: 1, duration: 1.5, y: '-100%', opacity: 0, ease: 'bounce'
+      });
+      gsap.from('.display-4', {
+        duration: 1, duration: 1.5, x: -50, opacity: 0, delay: 0.5, ease: 'back'
+      });
+    </script>
+
+    <!-- script AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init({
+          once: true,
+        });
+      </script>
+
+  </body>
+</html>
